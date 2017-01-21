@@ -76,7 +76,7 @@ function multi_parallel(req, res, next){
     res
     .status(200)
     .send(
-        var jsonArray = JSON.parse(JSON.stringify(x))
+        JSON.parse(JSON.stringify(x))
     )
     next()
 }
@@ -95,7 +95,7 @@ function multi_serial(req, res, next){
     res
     .status(200)
     .send(
-        var jsonArray = JSON.parse(JSON.stringify(x))
+        JSON.parse(JSON.stringify(x))
     )
     next()
 }
