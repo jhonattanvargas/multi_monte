@@ -163,6 +163,8 @@ function multi(req, res, next){
     result.improvement3 = 100*(1 - result.medParallel3 / result.medSerial3)
     result.improvement4 = 100*(1 - result.medParallel4 / result.medSerial4)
 
+    console.log(result)
+
     result.push(x)
     result.push(y)
 
