@@ -103,7 +103,7 @@ function multi_serial(req, res, next){
 
 function multi(req, res, next){
     let x = new Array();
-    let testNumber = 10;
+    let testNumber = 1;
     let n = [10000000,100000000,1000000000,2000000000]
     for (var i = 0; i < n.length; i++) {
         for (var j = 0; j < testNumber; j++) {
@@ -124,6 +124,14 @@ function multi(req, res, next){
         }
     }
     var result = new Object();
+    result.medSerial1 = 0;
+    result.medSerial2 = 0;
+    result.medSerial3 = 0;
+    result.medSerial4 = 0;
+    result.medParallel1 = 0;
+    result.medParallel2 = 0;
+    result.medParallel3 = 0;
+    result.medParallel4 = 0;
     for (let i = 0; i < x.length; i++) {
         if(x[i].cicles==10000000){
             result.medSerial1 += x[i].time / testNumber
@@ -166,13 +174,16 @@ function multi(req, res, next){
 
     console.log(result)
 
-    result.push(x)
-    result.push(y)
+    let arraySend = Array();
+
+    arraySend.push(x)
+    arraySend.push(y)
+    arraySend.push(result)
 
     res
     .status(200)
     .send(
-        JSON.parse(JSON.stringify(result))
+        JSON.parse(JSON.stringify(arraySend))
     )
     next()
 
