@@ -103,9 +103,10 @@ function multi_serial(req, res, next){
 
 function multi(req, res, next){
     let x = new Array();
+    let testNumber = 10;
     let n = [10000000,100000000,1000000000,2000000000]
     for (var i = 0; i < n.length; i++) {
-        for (var j = 0; j < 10; j++) {
+        for (var j = 0; j < testNumber; j++) {
           let obj = addon.serial(n[i])
           obj.cicles = n[i]
           obj.cpus = 1
@@ -115,7 +116,7 @@ function multi(req, res, next){
     }
     let y = new Array();
     for (let i = 0; i < n.length; i++) {
-        for (let j = 0; j < 10; j++) {
+        for (let j = 0; j < testNumber; j++) {
           let obj = addon.parallel(n[i])
           obj.cicles = n[i]
           y.push(obj)
@@ -125,31 +126,31 @@ function multi(req, res, next){
     var result = new Object();
     for (let i = 0; i < x.length; i++) {
         if(x[i].cicles==10000000){
-            result.medSerial1 += x[i].time / x[i].cicles
+            result.medSerial1 += x[i].time / testNumber
         }
         if(x[i].cicles==100000000){
-            result.medSerial2 += x[i].time / x[i].cicles
+            result.medSerial2 += x[i].time / testNumber
         }
         if(x[i].cicles==1000000000){
-            result.medSerial3 += x[i].time / x[i].cicles
+            result.medSerial3 += x[i].time / testNumber
         }
         if(x[i].cicles==2000000000){
-            result.medSerial4 += x[i].time / x[i].cicles
+            result.medSerial4 += x[i].time / testNumber
         }
     }
 
     for (let i = 0; i < y.length; i++) {
         if(y[i].cicles==10000000){
-            result.medParallel1 += y[i].time / y[i].cicles
+            result.medParallel1 += y[i].time / testNumber
         }
         if(y[i].cicles==100000000){
-            result.medParallel2 += y[i].time / y[i].cicles
+            result.medParallel2 += y[i].time /testNumber
         }
         if(y[i].cicles==1000000000){
-            result.medParallel3 += y[i].time / y[i].cicles
+            result.medParallel3 += y[i].time / testNumber
         }
         if(y[i].cicles==2000000000){
-            result.medParallel4 += y[i].time / y[i].cicles
+            result.medParallel4 += y[i].time / testNumber
         }
     }
 
